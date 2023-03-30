@@ -35,4 +35,6 @@ public class Teacher {
             joinColumns = @JoinColumn(name = "teacher_id"),
             inverseJoinColumns = @JoinColumn(name = "subject_id"))
     Set<Subject> subjectsTeachers;
+
+
 }
