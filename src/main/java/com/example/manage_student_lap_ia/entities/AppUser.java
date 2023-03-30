@@ -20,6 +20,12 @@ public class AppUser {
     @Column(name = "Enabled", length = 1, nullable = false)
     private boolean enabled;
 
+    @OneToOne(mappedBy = "appUserTeacher")
+    private Teacher teacher;
+
+    @OneToOne(mappedBy = "appUserStudent")
+    private Student student;
+
     public Long getUserId() {
         return userId;
     }

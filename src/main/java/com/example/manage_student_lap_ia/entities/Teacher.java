@@ -36,5 +36,9 @@ public class Teacher {
             inverseJoinColumns = @JoinColumn(name = "subject_id"))
     Set<Subject> subjectsTeachers;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "appuser_id", referencedColumnName = "User_Id")
+    private AppUser appUserTeacher;
+
 
 }
