@@ -13,10 +13,10 @@ public class Teacher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, unique = true, length = 45)
+    @Column(nullable = false, unique = false, length = 45)
     private String FullName;
 
-    @Column(nullable = false, unique = true, length = 45)
+    @Column(nullable = false, unique = false, length = 45)
     private String Address;
 
     @Column(nullable = false, unique = true, length = 45)

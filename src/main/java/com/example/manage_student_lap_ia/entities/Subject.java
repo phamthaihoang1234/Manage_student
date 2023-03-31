@@ -19,21 +19,21 @@ public class Subject {
     @Column(nullable = false, unique = true, length = 45)
     private String SubjectCode;
 
-    @Column(nullable = false, unique = true, length = 45)
+    @Column(nullable = false, unique = false, length = 45)
     private String Semester;
 
-    @Column(nullable = false, unique = true, length = 45)
+    @Column(nullable = false, unique = false, length = 45)
     private LocalDate StartDate;
 
-    @Column(nullable = false, unique = true, length = 45)
+    @Column(nullable = false, unique = false, length = 45)
     private LocalDate EndDate;
 
-    @Column(nullable = false, unique = true, length = 45)
+    @Column(nullable = false, unique = false, length = 45)
     private float AveMark;
 
 
 
-    @Column(nullable = false, unique = true, length = 45)
+    @Column(nullable = false, unique = false, length = 45)
     private Boolean Status;
 
     @ManyToMany(mappedBy = "Subjects")
