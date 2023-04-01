@@ -12,19 +12,25 @@ public class Mark {
     @Column(name = "id")
     private Integer id;
 
-    @Column(nullable = false, unique = true, length = 45)
+    @Column(nullable = true,  length = 45)
     private float Participation;
 
-    @Column(nullable = false, unique = true, length = 45)
+    @Column(nullable = true, length = 45)
     private float Assignment;
 
-    @Column(nullable = false, unique = true, length = 45)
+    @Column(nullable = true, length = 45)
     private float ProgressTest;
 
-    @Column(nullable = false, unique = true, length = 45)
+    @Column(nullable = true,  length = 45)
     private float FinalExam;
 
 
-    @OneToOne(mappedBy = "mark")
+
+    @ManyToOne
+    @JoinColumn(name = "student_id", nullable = false)
+    private Student student;
+
+    @ManyToOne
+    @JoinColumn(name = "subject_id", nullable = false)
     private Subject subject;
 }

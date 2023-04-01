@@ -42,6 +42,16 @@ public class Subject {
     @ManyToMany(mappedBy = "subjectsTeachers")
     Set<Teacher> listTeachers;
 
+    @OneToMany(mappedBy="subject")
+    private Set<Mark> marks;
+
+    public Set<Mark> getMarks() {
+        return marks;
+    }
+
+    public void setMarks(Set<Mark> marks) {
+        this.marks = marks;
+    }
 
     public Integer getId() {
         return id;
@@ -115,16 +125,8 @@ public class Subject {
         this.listTeachers = listTeachers;
     }
 
-    public Mark getMark() {
-        return mark;
-    }
 
-    public void setMark(Mark mark) {
-        this.mark = mark;
-    }
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "mark_id", referencedColumnName = "id")
-    private Mark mark;
+
 
 }

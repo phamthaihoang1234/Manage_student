@@ -52,6 +52,16 @@ public class Student {
     @JoinColumn(name = "appuser_id", referencedColumnName = "User_Id")
     private AppUser appUserStudent;
 
+    @OneToMany(mappedBy="student")
+    private Set<Mark> marks;
+
+    public Set<Mark> getMarks() {
+        return marks;
+    }
+
+    public void setMarks(Set<Mark> marks) {
+        this.marks = marks;
+    }
 
     public Student() {
     }
