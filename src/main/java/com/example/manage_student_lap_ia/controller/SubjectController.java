@@ -1,9 +1,11 @@
 package com.example.manage_student_lap_ia.controller;
 
 
+import com.example.manage_student_lap_ia.entities.Mark;
 import com.example.manage_student_lap_ia.entities.Student;
 import com.example.manage_student_lap_ia.entities.Subject;
 import com.example.manage_student_lap_ia.entities.UserNotFoundException;
+import com.example.manage_student_lap_ia.services.MarkServiceImpl;
 import com.example.manage_student_lap_ia.services.StudentServiceImpl;
 import com.example.manage_student_lap_ia.services.SubjectServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class SubjectController {
 
     @Autowired
     StudentServiceImpl stuService;
+
+    @Autowired
+    MarkServiceImpl markService;
 
     List<Subject> subjectList = null;
 
@@ -48,10 +53,10 @@ public class SubjectController {
     }
 
     int idUser = 0;
+    int idSub = 0;
     @PostMapping("/subject/save")
     public String saveSubject(Subject subject, RedirectAttributes ra,Model model) throws UserNotFoundException {
-        System.out.println(subject.getStartDate());
-        System.out.println(subjectList.get(0).getStartDate());
+
         subjectList.add(subject);
 
         stuService.get(idUser).getSubjects().add(subject);
@@ -63,6 +68,31 @@ public class SubjectController {
         model.addAttribute("listSubjects", subjectList);
 
         return "index_subject";
+    }
+
+
+    @GetMapping("/mark/new")
+    public String showNewFormMark(Model model) {
+
+        model.addAttribute("mark", new Mark());
+        model.addAttribute("pageTitle", "Add New Mark");
+        return "mark_form";
+    }
+
+    @PostMapping("/mark/save")
+    public String saveMark(Mark mark, RedirectAttributes ra,Model model) throws UserNotFoundException {
+
+        mark.setSubject(subService.get(idSub));
+        mark.setStudent(stuService.get(idUser));
+        markService.save(mark);
+        ra.addFlashAttribute("message", "The mark has been saved successfully.");
+
+
+        Mark m = markService.getMarkByStudentIdAndSubjectId(idUser,idSub);
+
+        model.addAttribute("mark", m);
+
+        return "index_mark";
     }
 
     /*@GetMapping("/students/edit/{id}")
@@ -97,4 +127,17 @@ public class SubjectController {
 
         return "index_subject";
     }
+
+    @GetMapping("/mark/viewmark/{id}")
+    public String viewMark(@PathVariable("id") Integer id, Model model, RedirectAttributes ra) {
+        idSub = id;
+        Mark m = markService.getMarkByStudentIdAndSubjectId(idUser,id);
+
+        model.addAttribute("mark", m);
+
+        return "index_mark";
+
+    }
+
+
 }

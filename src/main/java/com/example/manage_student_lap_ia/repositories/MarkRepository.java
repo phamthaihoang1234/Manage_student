@@ -11,5 +11,7 @@ import java.util.List;
 
 public interface MarkRepository extends CrudRepository<Mark, Integer> {
 
+    @Query("SELECT m FROM Mark m WHERE m.student.id = :studentId AND m.subject.id = :subjectId")
+    public Mark findByStudentIdAndSubjectId(@Param("studentId") Integer studentId, @Param("subjectId") Integer subjectId);
 
 }
