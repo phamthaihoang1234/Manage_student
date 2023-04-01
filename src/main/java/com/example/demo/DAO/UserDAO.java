@@ -2,6 +2,7 @@ package com.example.demo.DAO;
 
 import com.example.demo.DTO.UserDTO;
 import com.example.demo.Entity.User;
+import com.example.demo.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

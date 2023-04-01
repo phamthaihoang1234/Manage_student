@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @Table(name = "student")
-@AllArgsConstructor
+
 @RequiredArgsConstructor
 public class Student {
     @Id
@@ -24,15 +24,33 @@ public class Student {
     private String middleName;
     @Column(name = "lastname")
     private String lastName;
-
     @Transient
-    private String fullName  = this.firstName+ " "+this.middleName+" "+this.lastName;
+    private String fullName;
+
+
+    @OneToOne
+    @JoinColumn(name = "studentid", referencedColumnName = "informationid")
+    private Information studentInformation;
+
 
     public Student(int id, String fullName) {
         this.id = id;
-        //this.fullName = this.firstName + " " + this.middleName + " "+this.lastName;
         this.fullName= fullName;
+
+    }
+
+    public Student(int id, String fullName, Information information) {
+        this.id = id;
+        this.fullName= fullName;
+        this.studentInformation = information;
     }
 
 
+    public Student(int id, String firstName, String middleName, String lastName, String fullName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.fullName = fullName;
+    }
 }

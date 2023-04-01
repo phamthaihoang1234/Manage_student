@@ -19,7 +19,7 @@ public class StudentDAO {
     }
 
 
-
+    public Student getStudentById(int id){ return _StudentRepository.findStudentById(id);}
 
 
 }

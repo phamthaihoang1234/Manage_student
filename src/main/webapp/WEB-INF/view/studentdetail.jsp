@@ -18,16 +18,18 @@
         <th>Name</th>
     </tr>
 
-    <c:forEach var="o" items = "${a}">
-        <tr>
-            <td>${o.id}</td>
-            <td><a href="/student-detail/sid=${o.id}">${o.fullName}</a></td>
-        </tr>
-    </c:forEach>
+<%--    <c:forEach var="o" items = "${a}">--%>
+<%--        <tr>--%>
+<%--            <td>${o.id}</td>--%>
+<%--            <td><a href="/studentdetail?sid=${o.id}">${o.fullName}</a></td>--%>
+<%--        </tr>--%>
+<%--    </c:forEach>--%>
 
 
 
 </table>
+
+<h2> ${a.fullName} </h2>
 
 </body>
 </html>
