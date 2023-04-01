@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Users</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"  />
+</head>
+<body>
+<div class="container-fluid text-center">
+    <div><h2>Manage Subjects</h2></div>
+    <div class="m-2">
+        <a class="h3" th:href="@{/subjects/new}">Add New Subjects</a>
+    </div>
+
+    <div th:if="${message}" class="alert alert-success text-center">
+        [[${message}]]
+    </div>
+
+    <div>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>SubjectCode</th>
+                <th>Semester</th>
+                <th>StartDate</th>
+                <th>EndDate</th>
+                <th>AveMark</th>
+                <th>Status</th>
+                <th>Action</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="sub : ${listSubjects}">
+                <tr>
+                    <td>[[${sub.id}]]</td>
+                    <td>[[${sub.SubjectCode}]]</td>
+                    <td>[[${sub.Semester}]]</td>
+                    <td>[[${sub.StartDate}]]</td>
+                    <td>[[${sub.EndDate}]]</td>
+                    <td>[[${sub.AveMark}]]</td>
+                    <td>[[${sub.Status}]]</td>
+
+
+                    <td>
+                        <!--<a class="h4 mr-3" th:href="@{'/students/edit/' + ${stu.id}}">Edit</a>-->
+                        <a class="h4 mr-3" th:href="@{'/subject/delete/' + ${sub.id}}">Delete</a>
+                        <a class="h4" th:href="@{'/mark/viewmark/' + ${sub.id}}">View mark</a>
+
+                    </td>
+                </tr>
+            </th:block>
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+</body>
+</html>

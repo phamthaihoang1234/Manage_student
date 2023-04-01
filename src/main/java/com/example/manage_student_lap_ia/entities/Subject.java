@@ -34,7 +34,7 @@ public class Subject {
 
 
     @Column(nullable = false, unique = false, length = 45)
-    private Boolean Status;
+    private Boolean Status = true;
 
     @ManyToMany(mappedBy = "Subjects")
     Set<Student> listStudents;
@@ -43,7 +43,85 @@ public class Subject {
     Set<Teacher> listTeachers;
 
 
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getSubjectCode() {
+        return SubjectCode;
+    }
+
+    public void setSubjectCode(String subjectCode) {
+        SubjectCode = subjectCode;
+    }
+
+    public String getSemester() {
+        return Semester;
+    }
+
+    public void setSemester(String semester) {
+        Semester = semester;
+    }
+
+    public LocalDate getStartDate() {
+        return StartDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        StartDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return EndDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        EndDate = endDate;
+    }
+
+    public float getAveMark() {
+        return AveMark;
+    }
+
+    public void setAveMark(float aveMark) {
+        AveMark = aveMark;
+    }
+
+    public Boolean getStatus() {
+        return Status;
+    }
+
+    public void setStatus(Boolean status) {
+        Status = status;
+    }
+
+    public Set<Student> getListStudents() {
+        return listStudents;
+    }
+
+    public void setListStudents(Set<Student> listStudents) {
+        this.listStudents = listStudents;
+    }
+
+    public Set<Teacher> getListTeachers() {
+        return listTeachers;
+    }
+
+    public void setListTeachers(Set<Teacher> listTeachers) {
+        this.listTeachers = listTeachers;
+    }
+
+    public Mark getMark() {
+        return mark;
+    }
+
+    public void setMark(Mark mark) {
+        this.mark = mark;
+    }
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "mark_id", referencedColumnName = "id")

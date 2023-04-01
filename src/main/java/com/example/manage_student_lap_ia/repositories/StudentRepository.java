@@ -12,4 +12,6 @@ public interface StudentRepository extends CrudRepository<Student, Integer> {
 
     @Query(value = "select * from students where status = 1", nativeQuery = true)
     public List<Student> getAllActive();
+
+
 }

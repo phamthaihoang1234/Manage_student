@@ -20,11 +20,12 @@ public class SubjectServiceImpl {
 
 
 
-    public List<Subject> listAll() {
-        return (List<Subject>)repo.findAll();
+    public List<Subject> listAll(Integer Subid) {
+        return (List<Subject>)repo.findSubjectsByStudentId(Subid);
     }
 
     public void save(Subject sub) {
+
         repo.save(sub);
     }
 
