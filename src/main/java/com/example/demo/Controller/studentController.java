@@ -2,6 +2,7 @@ package com.example.demo.Controller;
 
 import com.example.demo.DAO.InformationDAO;
 import com.example.demo.DAO.StudentDAO;
+import com.example.demo.DAO.UserDAO;
 import com.example.demo.Entity.Information;
 import com.example.demo.Entity.Student;
 import org.springframework.stereotype.Controller;
@@ -16,13 +17,16 @@ import java.util.List;
 @RequestMapping(value = "/")
 public class studentController {
     private final  StudentDAO _StudentDAO;
+    private final UserDAO _UserDAO;
 
-    public studentController(StudentDAO studentDAO, InformationDAO informationDAO) {
-        _StudentDAO = studentDAO;
-        _InformationDAO = informationDAO;
-    }
 
     private final InformationDAO _InformationDAO;
+
+    public studentController(StudentDAO studentDAO, UserDAO userDAO, InformationDAO informationDAO) {
+        _StudentDAO = studentDAO;
+        _UserDAO = userDAO;
+        _InformationDAO = informationDAO;
+    }
 
     @RequestMapping(value ="/student", method = RequestMethod.GET)
     public String student(Model model){
@@ -38,11 +42,15 @@ public class studentController {
         return  "student";
     }
 
-    @RequestMapping(value = "/student-detail?sid={id}", method = RequestMethod.GET)
-    public String studentDetail(Model model, @RequestParam(name ="id") Integer id){
-        Student s = _StudentDAO.getStudentById(id);
-        Information i = _In
-        return ;
+    @RequestMapping(value = "/studentdetail",params ={"sid"},method = RequestMethod.GET)
+    public String studentDetail(Model model, @RequestParam(name = "sid") int sid){
+        Student s = _StudentDAO.getStudentById(sid);
+        s.setFullName(s.getFirstName()+" "+s.getMiddleName()+" "+s.getLastName());
+
+        Information i = _InformationDAO.getInformationById(sid);
+        model.addAttribute("i", i);
+        model.addAttribute("s", s);
+        return "studentdetail";
     }
 
 

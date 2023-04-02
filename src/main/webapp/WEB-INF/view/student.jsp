@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<h1>The table element</h1>
+<h1>Student List</h1>
 
 <table>
     <tr>
@@ -21,7 +21,7 @@
     <c:forEach var="o" items = "${a}">
         <tr>
             <td>${o.id}</td>
-            <td><a href="/student-detail/sid=${o.id}">${o.fullName}</a></td>
+            <td><a href="/studentdetail?sid=${o.id}">${o.fullName}</a></td>
         </tr>
     </c:forEach>
 

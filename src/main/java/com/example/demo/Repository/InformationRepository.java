@@ -7,6 +7,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface InformationRepository extends CrudRepository<Information, Integer> {
 
-    @Query(value =  "SELECT * FROM assignment2.information where InformationId =1", nativeQuery = true)
-    public  Information getInformationById();
+    @Query(value =  "SELECT * FROM assignment2.information where InformationId =:id", nativeQuery = true)
+    public  Information getInformationById(@Param("id")int id);
 }
